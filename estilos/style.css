@@ -1,0 +1,155 @@
+@charset "UTF-8";
+
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+
+
+:root {
+    --cor0: #D0D9F9;
+    --cor1: #A38EF7;
+    --cor2: #9150E0;
+    --cor3: #51BDDB;
+    --cor4: #009BCF;
+    --cor5: #233061;
+}
+body {
+    background-color: var(--cor5);
+}
+
+main {
+    margin-top: 20px;
+}
+
+main > section {
+    display: block;
+    /* border: 1px solid black; */
+    padding: 10px;
+    margin: auto;
+    width: 85vw;
+    /* background-color: rgba(255, 255, 255, 0.985);
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.24); */
+}
+
+section > h2 {
+    text-align: center;
+    padding: 10px;
+    color: white;
+}
+
+.forms {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#name, #date, #addButton, .resetButton {
+    display: block;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.188);
+    background-color: var(--cor0);
+}
+
+#name, #date {
+    flex: 1 0 150px;
+}
+
+#addButton {
+    flex: 1 0 40px;
+    background-color: #00df00;
+    font-weight: bold;
+}
+
+#name:focus, #date:focus-within {
+    background-color: white;
+    transition: background-color .5s;
+}
+
+/* #date {
+    display: block;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.188);
+}
+
+#addButton {
+    display: block;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.188);
+} */
+
+.divWork {
+    display: flexbox;
+    border: 1px solid transparent;
+    text-align: center;
+    margin: 10px 0px;
+    border-radius: 10px;
+    background-color: var(--cor0);
+}
+
+.pDate {
+    padding-bottom: 5px;
+    background-color: var(--cor3);
+    border-radius: 10px 10px 0px 0px;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.pName {
+    padding: 5px;
+    font-size: 1.1em;
+}
+
+.pButton {
+    padding: 5px;
+}
+
+.delButton, .checkButton {
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.236);
+}
+
+.delButton > span, .checkButton > span {
+    font-size: 1.8em;
+}
+
+.resetButton {
+    flex: 1 0 150px;
+    margin: auto;
+    margin-top: 10px;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+}
+
+.checkButton:hover {
+    color: white;
+    background-color: #00df00;
+    transition: color .5s, background-color .5s;
+}
+
+.delButton:hover {
+    color: white;
+    background-color: red;
+    transition: color .5s, background-color .5s;
+}
+
+
+
+
+
+
