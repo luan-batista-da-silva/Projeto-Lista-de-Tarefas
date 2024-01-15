@@ -4,12 +4,12 @@ let todo_list = JSON.parse(localStorage.getItem('todo_list')) || {
     lista_objt: []
 };
 
-let options = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric"
-};
+// let options = {
+//     weekday: "long",
+//     year: "numeric",
+//     month: "long",
+//     day: "numeric"
+// };
 
 updateList();
 
@@ -33,32 +33,37 @@ function updateList() {
         let mes = weekDay.getMonth() + 1;
         mes = mes < 10 ? "0" + mes : mes;
 
-        weekDay.toLocaleDateString("pt-br", options);
+        // weekDay.toLocaleDateString("pt-br", options);
 
         let newWork = document.createElement("div");
-        let newDate = document.createElement("p");
-        let newName = document.createElement("p");
-        let newButton = document.createElement("p");
+            let newDate = document.createElement("div");
+        let newActivity = document.createElement("div");    
+            let newName = document.createElement("p");
+            let newCheck = document.createElement("div");
+            let newTrash = document.createElement("div");
 
         newWork.className = "divWork";
-        newDate.className = "pDate";
-        newName.className = "pName";
-        newName.id = `checkName_${i}`;
-        newButton.className = "pButton";
+            newDate.className = "divDate";
+        newActivity.className = "divAct"
+            newName.className = "divName";
+            newName.id = `checkName_${i}`;
+            newCheck.className = "divButton";
+            newTrash.className = "divButton";
 
-        newName.textContent = lista_objt[i].nome;
+        newCheck.innerHTML += ` <button class="checkButton" onclick="checkElementList(${i})"><span class="material-symbols-outlined" id="checkButton_${i}">check_box_outline_blank</span></button>`
+        newName.innerHTML += `${lista_objt[i].tarefas.nome}`;
         newDate.textContent = `${dia}/${mes}/${weekDay.getFullYear()} - ${semana[weekDay.getDay()]}`;
-        newButton.innerHTML += `
-        <button class="checkButton" onclick="checkElementList(${i})"><span class="material-symbols-outlined" id="checkButton_${i}">
-        check_box_outline_blank
-        </span></button> 
+        newTrash.innerHTML += `
+        <button class="editButton" onclick="editActvity(${i})"><span class="material-symbols-outlined" id="editButton_${i}">edit</span></button>
         <button class="delButton" onclick="todoListDel(${i}, todoListReset)"><span class="material-symbols-outlined">delete</span></button>`
 
         newWork.appendChild(newDate);
-        newWork.appendChild(newName);
-        newWork.appendChild(newButton);
+        newActivity.appendChild(newCheck);
+        newActivity.appendChild(newName);
+        newActivity.appendChild(newTrash);
 
         tarefas.appendChild(newWork);
+        tarefas.appendChild(newActivity);
     }
 
 }
@@ -69,21 +74,30 @@ function todoListAdd() {
 
     let dateObjt = new Date(data);
 
-    let objt = {
-        data: new Date(),
-        nome: ''
-    };
+    let tarefaObjt = {
+        nome: nome,
+        descricao: '',
+        decoration: 'none'
+    }
 
     if (localStorage.todo_list) {
         lista_objt = JSON.parse(localStorage.getItem('todo_list'));
     }
 
-    objt.data = data;
-    objt.nome = nome;
+    // Verifica se a data já existe no array sem considerar o horário
+    let existingDateIndex = lista_objt.findIndex(item => item.data.setHours(0, 0, 0, 0) === dateObjt.setHours(0, 0, 0, 0));
 
-    lista_objt.push(objt);
-
-
+    if (existingDateIndex !== -1) {
+        // A data já existe, adiciona a nova tarefa para essa data
+        lista_objt[existingDateIndex].tarefas.push(tarefaObjt);
+    } else {
+        // A data não existe, cria um novo objeto com a data e a tarefa
+        let objt = {
+            data: dateObjt,
+            tarefas: [tarefaObjt] // Corrija o nome da propriedade para tarefas
+        }
+        lista_objt.push(objt);
+    }
 
     console.log(lista_objt);
     
@@ -91,7 +105,7 @@ function todoListAdd() {
     
     console.log(lista_objt);
 
-    localStorage.todo_list = JSON.stringify(lista_objt);
+    localStorage.setItem('todo_list', JSON.stringify(lista_objt));
 
     updateList();
 
@@ -99,6 +113,10 @@ function todoListAdd() {
     document.querySelector('input#date').value = '';
     document.querySelector('input#name').focus();
 }
+
+
+
+
 
 function todoListReset() {
     localStorage.removeItem('todo_list');

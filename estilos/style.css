@@ -71,6 +71,10 @@ section > h2 {
     transition: background-color .5s;
 }
 
+section#tarefas {
+
+}
+
 /* #date {
     display: block;
     margin: 5px;
@@ -88,47 +92,54 @@ section > h2 {
 } */
 
 .divWork {
-    display: flexbox;
-    border: 1px solid transparent;
     text-align: center;
-    margin: 10px 0px;
     border-radius: 10px;
-    background-color: var(--cor0);
 }
 
-.pDate {
+.divDate {
     padding-bottom: 5px;
     background-color: var(--cor3);
-    border-radius: 10px 10px 0px 0px;
     padding: 5px;
     font-weight: bold;
     font-size: 1.2em;
 }
 
-.pName {
-    padding: 5px;
-    font-size: 1.1em;
+.divAct {
+    border-bottom: 2px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    background-color: var(--cor0);
 }
 
-.pButton {
+.divName {
+    flex: 1 0 100px;
     padding: 5px;
+    font-size: 1em;
 }
 
-.delButton, .checkButton {
-    width: 50px;
-    height: 50px;
-    padding: 10px;
+.delButton {
+    flex-wrap: nowrap;
+}
+
+.divButton {
+    padding-top: 3px;
+}
+
+.delButton, .checkButton, .editButton {
+    padding-top: 1px;
     border: none;
-    border-radius: 10px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.236);
+    background-color: var(--cor0);
+    border-radius: 2px;
+    /* box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.236); */
 }
 
-.delButton > span, .checkButton > span {
-    font-size: 1.8em;
+.delButton > span, .checkButton > span, .editButton > span {
+    font-size: 1.5em;
 }
 
 .resetButton {
-    flex: 1 0 150px;
+    flex: 1 0 100px;
     margin: auto;
     margin-top: 10px;
     background-color: red;
@@ -137,14 +148,17 @@ section > h2 {
 }
 
 .checkButton:hover {
-    color: white;
-    background-color: #00df00;
+    color: #00df00;
+    transition: color .5s, background-color .5s;
+}
+
+.editButton:hover {
+    color: var(--cor2);
     transition: color .5s, background-color .5s;
 }
 
 .delButton:hover {
-    color: white;
-    background-color: red;
+    color: red;
     transition: color .5s, background-color .5s;
 }
 
